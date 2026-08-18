@@ -86,7 +86,7 @@ For the PowerShell (Microsoft Graph SDK) equivalent of each step, both approache
 
 ## 4. Custom Azure roles for subscription lifecycle (cancellation)
 
-A recurring customer follow-up: a small operations group needs to **cancel subscriptions** without holding Owner or Contributor. The right answer is a **custom role**, and it raises two questions worth getting exactly right:
+A recurring ask, told here as **Contoso**: a small operations group needs to **cancel subscriptions** without holding Owner or Contributor. The right answer is a **custom role**, and it raises two questions worth getting exactly right:
 
 ### 4.1 The minimal action set
 

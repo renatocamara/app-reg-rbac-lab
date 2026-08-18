@@ -46,14 +46,14 @@ The lab uses a client secret with a 24-hour lifetime for simplicity. In producti
 
 ## 8. Custom roles: least privilege for sensitive operations (subscription cancellation)
 
-Script `07` models the follow-up from the customer's May 12 session: a custom role that allows **cancelling a subscription** without Owner/Contributor.
+Script `07` models a real ask, told here as **Contoso**: a custom role that allows **cancelling a subscription** without Owner/Contributor.
 
 - `Microsoft.Subscription/cancel` authorizes the cancellation itself.
 - `Microsoft.Resources/subscriptions/read` is what makes the subscription **visible in the portal** for the assignee — without it the workflow silently breaks, because the user cannot navigate to what they cannot read. Requiring `read` is not privilege creep; it exposes metadata only.
 - `AssignableScopes` pins where the role can be assigned.
 - Validation is done **without ever invoking the cancel action**: check the definition, check the assignment, and prove portal visibility by toggling the `read` action.
 
-The same lesson applies to the subscription as a scope. A real support case pattern: a subscription is deleted while custom roles still list it in `AssignableScopes` and role assignments still exist at that scope. Updating the roles then fails with `RoleScopeBeingRemovedContainsAssignments`, the assignments are no longer visible to CLI/PowerShell, and only a Microsoft support case (Product Group backend cleanup) can unblock it — across every affected role. Prevention is the decommission order in QUICKSTART §4.3: assignments → AssignableScopes → then the subscription. **The scope's death is the last step, never the first.** Script `05` section 4 detects roles whose `AssignableScopes` reference subscriptions that are no longer visible.
+The same lesson applies to the subscription as a scope. A real support case pattern (again as Contoso): a subscription is deleted while custom roles still list it in `AssignableScopes` and role assignments still exist at that scope. Updating the roles then fails with `RoleScopeBeingRemovedContainsAssignments`, the assignments are no longer visible to CLI/PowerShell, and only a Microsoft support case (Product Group backend cleanup) can unblock it — across every affected role. Prevention is the decommission order in QUICKSTART §4.3: assignments → AssignableScopes → then the subscription. **The scope's death is the last step, never the first.** Script `05` section 4 detects roles whose `AssignableScopes` reference subscriptions that are no longer visible.
 
 ## 9. Make the audit continuous
 

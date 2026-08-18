@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 # 07 - Custom Azure role for subscription cancellation (least privilege + portal visibility).
 #
-# Scenario (from the customer's May 12 follow-up):
-#   The customer built a custom role so a small group can CANCEL subscriptions
+# Scenario (Contoso):
+#   Contoso built a custom role so a small group can CANCEL subscriptions
 #   without holding Owner/Contributor. Two questions came out of it:
 #     1. What is the minimal set of actions the role needs?
 #     2. Why do assignees need a *read* permission for the subscription to even

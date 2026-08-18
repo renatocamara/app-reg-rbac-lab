@@ -23,9 +23,9 @@ Everything runs with **Azure CLI + bash** — works locally (Linux/macOS/WSL) or
 
 **1. App Registration lifecycle (scripts 00-06).** Create → grant least-privilege RBAC → test both directions (access works, excess is denied) → then deliberately delete the app the *wrong* way to produce an orphaned role assignment, detect it, and fix it with the correct decommission runbook.
 
-**2. Custom roles for sensitive operations (script 07).** Modeled on a real customer ask: cancel a subscription without holding Owner/Contributor. Builds the minimal-action custom role (`Microsoft.Subscription/cancel` + `Microsoft.Resources/subscriptions/read`), explains why the `read` action is required for the subscription to even appear in the portal, and validates everything **without ever invoking the cancel action**.
+**2. Custom roles for sensitive operations (script 07).** Modeled on a real ask, told here as **Contoso**: cancel a subscription without holding Owner/Contributor. Builds the minimal-action custom role (`Microsoft.Subscription/cancel` + `Microsoft.Resources/subscriptions/read`), explains why the `read` action is required for the subscription to even appear in the portal, and validates everything **without ever invoking the cancel action**.
 
-**3. Stale scope detection (script 05, section 4).** Modeled on a real support case: a subscription was deleted while dozens of custom roles still listed it in `AssignableScopes` and assignments still existed at that scope. Result: every role update blocked, no self-service fix possible. The audit finds custom roles pointing at subscriptions that no longer exist — *before* it becomes a support case.
+**3. Stale scope detection (script 05, section 4).** Modeled on a real support case (also as Contoso): a subscription was deleted while dozens of custom roles still listed it in `AssignableScopes` and assignments still existed at that scope. Result: every role update blocked, no self-service fix possible. The audit finds custom roles pointing at subscriptions that no longer exist — *before* it becomes a support case.
 
 ## Prerequisites
 
