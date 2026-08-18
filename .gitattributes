@@ -1,0 +1,5 @@
+# Keep shell scripts with LF even when the repo is cloned on Windows,
+# otherwise CRLF breaks them in Cloud Shell / WSL.
+*.sh text eol=lf
+*.md text
+.env.example text eol=lf

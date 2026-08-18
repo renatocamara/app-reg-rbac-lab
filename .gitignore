@@ -1,0 +1,9 @@
+# Never commit secrets or lab state
+.env
+.lab-state
+*.secret
+*.pem
+*.pfx
+
+# Presenter material — local only, never pushed to GitHub
+speeches/
